@@ -6,16 +6,19 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArithmeticCalculator calc = new ArithmeticCalculator();
+        ArithmeticCalculatorLv3<Double> calc = new ArithmeticCalculatorLv3<>(Double.class);
         while (true){
 
             System.out.print("첫 번째 숫자를 입력하세요: ");
-            int num1=sc.nextInt();
+            double num1=sc.nextDouble();
             System.out.print("두 번째 숫자를 입력하세요: ");
-            int num2=sc.nextInt();
+            double num2=sc.nextDouble();
             System.out.print("사칙연산 기호를 입력하세요: ");
-            char operator=sc.next().charAt(0);
-            int result=calc.calculate(num1,num2,operator);
+            char operatorchar=sc.next().charAt(0);
+            /// /////////////////////////////////////////////
+            Type operator = Type.match(operatorchar);
+            Double result=calc.calculate(num1,num2,operator);
+            /// ///////////////////////////////////////////////
             System.out.println("결과: " + result);
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String answer = sc.next();
@@ -25,13 +28,19 @@ public class App {
 
         }
 
-        System.out.println("모든결과 출력");
-        List<Integer> history= calc.getHistory();
-        System.out.println(history);
 
-        System.out.println("가장먼저 저장된 값 삭제");
-        calc.removeResult();
-        System.out.println(history);
+
+        System.out.print("기준값을 입력하세요: ");
+        double threshold = sc.nextDouble();
+        System.out.println("전체 연산 기록:");
+        calc.getHistory().forEach(System.out::println);
+
+        List<Double> history = calc.getResultsGreaterThan(threshold);
+
+        System.out.println("해당 값보다 큰 결과들:");
+        history.forEach(System.out::println);
+
+
 
         }
 

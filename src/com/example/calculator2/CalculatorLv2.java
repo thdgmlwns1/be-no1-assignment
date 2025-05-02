@@ -1,12 +1,11 @@
 package com.example.calculator2;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Calculator {
-    private  List<Integer> history;
+public class CalculatorLv2 {
+    private  ArrayList<Integer> history;
 
-    public Calculator() {
+    public CalculatorLv2() {
 
         this.history = new ArrayList<>();
     }
@@ -30,11 +29,13 @@ public class Calculator {
             case '/':
                 if (num2 == 0) {
                     System.out.println("0으로 나눌 수 없습니다");
+                    System.exit(0);
                 }
                 result = num1 / num2;
                 break;
             default:
                 System.out.println("잘못된 연산자 입력입니다");
+                System.exit(0);
                 break;
 
         }
@@ -49,11 +50,11 @@ public class Calculator {
 
 
 
-    public List<Integer> getHistory() {
+    public ArrayList<Integer> getHistory() {
         return history;
     }
 
-    public void setHistory(List<Integer> history) {
+    public void setHistory(ArrayList<Integer> history) {
         this.history = history;
     }
 }

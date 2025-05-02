@@ -2,7 +2,7 @@ package com.example.calculator;
 
 import java.util.Scanner;
 
-public class App {
+public class AppLv1 {
     public static void main(String[] args) {
         while (true){
             Scanner sc = new Scanner(System.in);
@@ -27,11 +27,13 @@ public class App {
                 case '/':
                     if (num2 == 0) {
                         System.out.println("0으로 나눌 수 없습니다");
+                        System.exit(0);
                     }
                     result = num1 / num2;
                     break;
                 default:
                     System.out.println("잘못된 연산자 입력입니다");
+                    System.exit(0);
                     break;
 
             }
