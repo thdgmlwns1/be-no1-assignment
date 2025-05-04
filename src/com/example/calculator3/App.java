@@ -19,7 +19,8 @@ public class App {
             Type operator = Type.match(operatorchar);
             Double result=calc.calculate(num1,num2,operator);
             /// ///////////////////////////////////////////////
-            System.out.println("결과: " + result);
+//            System.out.println("결과: " + result); 부동 소수점 오류 남
+            System.out.printf("결과: %.5f\n", result); // 소수점 5자리까만 표현
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String answer = sc.next();
             if (answer.equals("exit")) {
@@ -32,17 +33,31 @@ public class App {
 
         System.out.print("기준값을 입력하세요: ");
         double threshold = sc.nextDouble();
+
         System.out.println("전체 연산 기록:");
-        calc.getHistory().forEach(System.out::println);
+        calc.getHistory().forEach(v -> System.out.printf("%.5f\n", v));
 
         List<Double> history = calc.getResultsGreaterThan(threshold);
 
         System.out.println("해당 값보다 큰 결과들:");
-        history.forEach(System.out::println);
+        history.forEach(v -> System.out.printf("%.5f\n", v));
 
 
 
-        }
+
+
+        //부동 소수점 오류남
+//        System.out.println("전체 연산 기록:");
+//        calc.getHistory().forEach(System.out::println);
+//
+//        List<Double> history = calc.getResultsGreaterThan(threshold);
+//
+//        System.out.println("해당 값보다 큰 결과들:");
+//        history.forEach(System.out::println);
+
+
 
     }
+
+}
 
